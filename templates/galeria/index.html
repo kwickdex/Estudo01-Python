@@ -44,9 +44,14 @@
                             {% if cards %}
                             {% for fotografia in cards %}
                             <li class="card">
-                                <a href="{% url 'imagem' %}">
+                                <a href="{% url 'imagem' fotografia.id %}">
+                                    {% if fotografia.foto != "" or fotografia.foto != null%}
                                     <img class="card__imagem"
-                                        src="{{fotografia.foto}}" alt="foto">
+                                        src="{{fotografia.foto.url }}" alt="foto" max-width="100px" max-height="100px">
+                                    {% else %}
+                                    <img class="card__imagem"
+                                        src="{%static 'media/fotos/2025/07/29/Modal.png'%}" alt="foto genérica">
+                                    {% endif %}
                                 </a>
                                 <span class="card__tag">{{ fotografia.categorias }}</span>
                                 <div class="card__info">
